@@ -27,3 +27,10 @@
 *.exe
 *.out
 *.app
+
+# Image 
+*.tga
+
+# Others
+*.layout
+*.dev
