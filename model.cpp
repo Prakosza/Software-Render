@@ -9,13 +9,13 @@ using namespace std;
 Model::Model(fstream &file)
 {
 	char temp;
-	int trash;
+	int trash; 
 	float x,y,z;
 	string line;
 	while(!file.eof())
 	{
 		getline(file,line);
-		istringstream iss(line.c_str());
+		istringstream iss(line.c_str()); 
 		if(!line.compare(0,2,"v "))
 		{
 			iss >> temp;
@@ -26,15 +26,27 @@ Model::Model(fstream &file)
 		}
 		else
 		{
-			if(!line.compare(0,2,"f "))
+			if(!line.compare(0,3,"vt "))
 			{
-				iss >> temp;
-				array<int, 3>  f;
-				iss >> f[0] >> temp >> trash >> temp >> trash >> f[1] >> temp >> trash >> temp >> trash >> f[2];
-				f[0]--;f[1]--;f[2]--;
-				//cout << f[0] << " "  << f[1] << " "  << f[2] << " "  << "\n";
-				faces.push_back(f);
+				iss >> temp >> temp;
+				iss >> x >> y;
+				Vec2<float> vec(x,y);
+			//	cout << "vectex " << " " << x << " "  << y << "\n";
+				vectex.push_back(vec);
 			}
+			else
+			{
+				if(!line.compare(0,2,"f "))
+				{
+					iss >> temp;
+					array<int, 6>  f;
+					iss >> f[0] >> temp >> f[3] >> temp >> trash >> f[1] >> temp >> f[4] >> temp >> trash >> f[2] >> temp >> f[5];
+					f[0]--;f[1]--;f[2]--;f[3]--;f[4]--;f[5]--;
+					//cout << f[0] << " "  << f[1] << " "  << f[2] << " "  << f[3] << " " << f[4] << " " << f[5] << "\n";
+					faces.push_back(f);
+				}
+			}
+			
 		}
 		
 	}

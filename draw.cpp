@@ -49,8 +49,9 @@ void triangle(Vec2<int> a,Vec2<int> b,Vec2<int> c,TGAImage &image, TGAColor &col
 		//cout << minx << " " << maxx << "\n";
 	}
 }
-void triangle(Vec3<float> a,Vec3<float> b,Vec3<float> c,float *zbuffer,TGAImage &image, TGAColor &color)
+void triangle(Vec3<Vec3<float>> cord,float *zbuffer,TGAImage &image, const Vec3<Vec2<float>> &colors,float intensity,TGAImage &textures)
 {
+	Vec3<float> a=cord.x;Vec3<float> b=cord.y;Vec3<float> c=cord.z;
 	int minx=999999,maxx=0,miny=999999,maxy=0;
 	Vec3<float> produkt;
 	if(a.x>maxx)
@@ -77,11 +78,12 @@ void triangle(Vec3<float> a,Vec3<float> b,Vec3<float> c,float *zbuffer,TGAImage 
 		maxy=c.y;
 	if(c.y<miny)
 		miny=c.y;
-	
+	Vec3<Vec2<float>> newColors;
+	Vec2<float> tex;
 	maxx=min(image.get_width(),maxx);
 	minx=max(0,minx);
 	maxy=min(image.get_height(),maxy);
-	miny=max(0,miny);
+	miny=max(0,miny); 
 	float z;
 	//cout << minx << " " << maxx << " " << miny << " " << maxy << "\n";
 	for(;minx<=maxx;minx++)
@@ -96,13 +98,19 @@ void triangle(Vec3<float> a,Vec3<float> b,Vec3<float> c,float *zbuffer,TGAImage 
 				z+=a.z*produkt.x;
 				z+=b.z*produkt.y;
 				z+=c.z*produkt.z;
+				newColors.x=colors.x*produkt.x;
+				newColors.y=colors.y*produkt.y;
+				newColors.z=colors.z*produkt.z;
+				tex=newColors.sum();
+				//cout << minx << " " << i << " " << produkt.x << " " << produkt.y  << " " << produkt.z << " " << tex.x << " " << tex.y << " " << 
 				if(zbuffer[minx*image.get_height()+i]<z)
 				{
 					zbuffer[minx*image.get_height()+i]=z;
-					image.set(minx,i,color);
+					image.set(minx,i,textures.get((int) tex.x,(int) tex.y)*intensity);
 				}
 				
-				//cout << minx << " " << i << " " << produkt.x << " " << produkt.y  << " " << produkt.z << "\n";
+				//cout << minx << " " << i << " " << produkt.x << " " << produkt.y  << " " << produkt.z << " " <<  (unsigned int) (newColors.x+newColors.z+newColors.y).r << " " << ( unsigned int)  (newColors.x+newColors.z+newColors.y).g << " " << (unsigned int)  (newColors.x+newColors.z+newColors.y).b << " " << intensity << "\n";
+				//cin >> z;
 			}
 			
 		}

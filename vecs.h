@@ -12,6 +12,14 @@ class Vec2
 			this->y=y;
 			
 		}
+		inline Vec2<type> operator + (const Vec2<type> &vec) const 
+		{
+			return Vec2<type>(x+vec.x,y+vec.y);
+		}
+		inline Vec2<type> operator * (float tx) const 
+		{
+			return Vec2<type>(x*tx,y*tx);
+		}
 		Vec2(){}
 		~Vec2(){}
 		
@@ -49,6 +57,10 @@ class Vec3
 		{
 			return Vec3<type>(x+vec.x,y+vec.y,z+vec.z);
 		}
+		inline Vec3<type> operator * (float tx) const 
+		{
+			return Vec3<type>(x*tx,y*tx,z*tx);
+		}
 		inline type operator * (const Vec3<type> &vec) const 
 		{
 			return x*vec.x + y*vec.y + z*vec.z;
@@ -65,7 +77,11 @@ class Vec3
 		inline static Vec3<type> cross(const Vec3<type> &vec1,const Vec3<type> &vec2)
 		{
 			return Vec3<type>(vec1.y*vec2.z-vec1.z*vec2.y,vec1.z*vec2.x-vec1.x*vec2.z,vec1.x*vec2.y-vec1.y*vec2.x);
-		}		
+		}	
+		inline type sum() const 
+		{
+			return x+y+z;;
+		}	
 };
 #endif
 

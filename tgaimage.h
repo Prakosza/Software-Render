@@ -49,14 +49,30 @@ struct TGAColor {
 			raw[i] = p[i];
 		}
 	}
+	inline TGAColor operator * (float x) const 
+	{
+		if(x<=1)
+		{
+			return TGAColor((unsigned char) (r*x),(unsigned char) (g*x),(unsigned char) (b*x),a);
+		}
+		else
+		{
+			return *this;
+		}
+		
+	}
+	inline TGAColor operator + (const TGAColor &x) const 
+	{
+		return TGAColor((unsigned char) ((r+x.r)),(unsigned char) ((g+x.g)),(unsigned char) ((b+x.b)),a);
+	}
 
 	TGAColor & operator =(const TGAColor &c) {
 		if (this != &c) {
 			bytespp = c.bytespp;
-			val = c.val;
+			val = c.val;  
 		}
 		return *this;
-	}
+	} 
 };
 
 
