@@ -33,6 +33,10 @@ class Vec3
 		{
 			return(Vec2<int>((int)((x+1)*(w/2)),(int)((y+1)*(h/2))));
 		}
+		Vec3<float> conToScreen(int h,int w)
+		{
+			return(Vec3<float>(((x+1)*(w/2)),((y+1)*(h/2)),z));
+		}
 		inline Vec3<type> operator ^ (const Vec3<type> &vec) const 
 		{
 			return Vec3<type>(y*vec.z-z*vec.y,z*vec.x-x*vec.z,x*vec.y-y*vec.x);

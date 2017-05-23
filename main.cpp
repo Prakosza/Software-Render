@@ -8,6 +8,7 @@
 #include<vector>
 #include<iostream>
 #include <time.h>
+#include <limits>
 #include<string>
 using namespace std;
 TGAColor white = TGAColor(255, 255, 255, 255);
@@ -24,6 +25,7 @@ int main(int argc, char** argv) {
     	float intensity;
 		array<int, 3> face;
 		cout << argv[1] << "\n";
+		
 		file.open( argv[1], std::ios::in);
 		Model myModel(file);
 		Vec3<float> lightDir(0,0,-1);
@@ -31,6 +33,12 @@ int main(int argc, char** argv) {
 		vector<array<int, 3> > &faces=myModel.getFaces();
 		vector<Vec3<float>> &vecs=myModel.getVecs();
 		TGAImage image(800, 800, TGAImage::RGB);
+		cout << "uff\n";
+		float *zbuffer=new float[image.get_width()*image.get_height()];
+		cout << "uff\n";
+		for(int i=0;i<image.get_width()*image.get_height();i++)
+			zbuffer[i]=numeric_limits<float>::min();
+		cout << "uff\n";
 		for(unsigned int i=0;i<faces.size();i++)
 		{
 			face=faces[i];
@@ -40,12 +48,13 @@ int main(int argc, char** argv) {
 			if(intensity>0)
 			{
 				TGAColor rad = TGAColor(intensity*255,intensity*255,intensity*255, 255);
-				Vec3<Vec2<int>> cord(vecs[face[0]].conToVec2(image.get_width(),image.get_height()),vecs[face[1]].conToVec2(image.get_width(),image.get_height()),vecs[face[2]].conToVec2(image.get_width(),image.get_height()));
-				triangle(cord.x,cord.y,cord.z,image,rad);
+				Vec3<Vec3<float>> cord(vecs[face[0]].conToScreen(image.get_width(),image.get_height()),vecs[face[1]].conToScreen(image.get_width(),image.get_height()),vecs[face[2]].conToScreen(image.get_width(),image.get_height()));
+				triangle(cord.x,cord.y,cord.z,zbuffer,image,rad);
 			}
 		}
 		image.flip_vertically();
-		image.write_tga_file("output.tga");		
+		image.write_tga_file("output.tga");	
+		delete zbuffer;	
 	}
 	else
 	{

@@ -1,4 +1,5 @@
 #include "draw.h"
+#include<iostream>
 void triangle(Vec2<int> a,Vec2<int> b,Vec2<int> c,TGAImage &image, TGAColor &color)
 {
 	int minx=999999,maxx=0,miny=999999,maxy=0;
@@ -42,6 +43,66 @@ void triangle(Vec2<int> a,Vec2<int> b,Vec2<int> c,TGAImage &image, TGAColor &col
 			{
 				image.set(minx,i,color);
 				//cout << minx << " " << i << " " << 1-((float) (produkt.x+produkt.y))/produkt.z << " " << ((float) produkt.x)/produkt.z  << " " << ((float) produkt.y)/produkt.z << "\n";
+			}
+			
+		}
+		//cout << minx << " " << maxx << "\n";
+	}
+}
+void triangle(Vec3<float> a,Vec3<float> b,Vec3<float> c,float *zbuffer,TGAImage &image, TGAColor &color)
+{
+	int minx=999999,maxx=0,miny=999999,maxy=0;
+	Vec3<float> produkt;
+	if(a.x>maxx)
+		maxx=a.x;
+	if(a.x<minx)
+		minx=a.x;
+	if(a.y>maxy)
+		maxy=a.y;
+	if(a.y<miny)
+		miny=a.y;
+	if(b.x>maxx) 
+		maxx=b.x;
+	if(b.x<minx)
+		minx=b.x;
+	if(b.y>maxy)
+		maxy=b.y;
+	if(b.y<miny)
+		miny=b.y;
+	if(c.x>maxx)
+		maxx=c.x;
+	if(c.x<minx)
+		minx=c.x;
+	if(c.y>maxy)
+		maxy=c.y;
+	if(c.y<miny)
+		miny=c.y;
+	
+	maxx=min(image.get_width(),maxx);
+	minx=max(0,minx);
+	maxy=min(image.get_height(),maxy);
+	miny=max(0,miny);
+	float z;
+	//cout << minx << " " << maxx << " " << miny << " " << maxy << "\n";
+	for(;minx<=maxx;minx++)
+	{
+		for(int i=miny;i<=maxy;i++)
+		{
+			produkt=Vec3<float>::cross(Vec3<float>(b.x-a.x,c.x-a.x,a.x-minx),Vec3<float>(b.y-a.y,c.y-a.y,a.y-i));
+			produkt=Vec3<float>(1-((produkt.x+produkt.y))/produkt.z,( produkt.x)/produkt.z,(produkt.y)/produkt.z);		
+			if(!(produkt.x < 0 || produkt.y < 0 || produkt.z < 0  ))
+			{
+				z=0;
+				z+=a.z*produkt.x;
+				z+=b.z*produkt.y;
+				z+=c.z*produkt.z;
+				if(zbuffer[minx*image.get_height()+i]<z)
+				{
+					zbuffer[minx*image.get_height()+i]=z;
+					image.set(minx,i,color);
+				}
+				
+				//cout << minx << " " << i << " " << produkt.x << " " << produkt.y  << " " << produkt.z << "\n";
 			}
 			
 		}
