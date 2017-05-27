@@ -1,0 +1,1 @@
+Software-Render african_head.obj african_head_diffuse.tga

@@ -2,7 +2,7 @@
 *.slo
 *.lo
 *.o
-*.obj
+
 
 # Precompiled Headers
 *.gch
@@ -29,7 +29,7 @@
 *.app
 
 # Image 
-*.tga
+
 
 # Others
 *.layout
