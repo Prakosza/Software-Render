@@ -1,0 +1,41 @@
+﻿  stdafx.cpp
+  draw.cpp
+draw.cpp(64): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
+draw.cpp(66): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
+draw.cpp(68): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
+draw.cpp(70): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
+draw.cpp(72): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
+draw.cpp(74): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
+draw.cpp(76): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
+draw.cpp(78): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
+draw.cpp(80): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
+draw.cpp(82): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
+draw.cpp(84): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
+draw.cpp(86): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
+draw.cpp(132): warning C4244: "inicjowanie": konwersja z "int" do "float", możliwa utrata danych
+draw.cpp(134): warning C4244: "inicjowanie": konwersja z "int" do "float", możliwa utrata danych
+draw.cpp(136): warning C4244: "inicjowanie": konwersja z "int" do "float", możliwa utrata danych
+draw.cpp(138): warning C4244: "inicjowanie": konwersja z "int" do "float", możliwa utrata danych
+draw.cpp(140): warning C4244: "inicjowanie": konwersja z "int" do "float", możliwa utrata danych
+draw.cpp(142): warning C4244: "inicjowanie": konwersja z "int" do "float", możliwa utrata danych
+draw.cpp(152): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+draw.cpp(154): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+draw.cpp(159): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+draw.cpp(160): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+draw.cpp(164): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+draw.cpp(165): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+draw.cpp(169): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+draw.cpp(181): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+draw.cpp(187): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+draw.cpp(188): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+draw.cpp(192): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+draw.cpp(193): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+draw.cpp(197): warning C4244: "argument": konwersja z "float" do "int", możliwa utrata danych
+  model.cpp
+  Software-Render.cpp
+Software-Render.cpp(27): warning C4244: "=": konwersja z "time_t" do "int", możliwa utrata danych
+  tgaimage.cpp
+  Trwa generowanie kodu
+  All 453 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Zakończono generowanie kodu
+  Software-Render.vcxproj -> C:\Users\prako\OneDrive\Dokumenty\GitHub\Software-Render-\Software-Render\Release\Software-Render.exe
