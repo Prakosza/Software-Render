@@ -34,3 +34,10 @@
 # Others
 *.layout
 *.dev
+/Debug/
+/Release/
+/Software-Render/Debug/
+/Software-Render/Release/
+/Software-Render/x64/
+/x64/
+/.vs/
